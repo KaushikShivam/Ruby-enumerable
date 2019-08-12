@@ -22,64 +22,44 @@ module Enumerable
   
   # my_select
   def my_select
-    count = 0
     arr = []
-    while count < length
-      arr.push(self[count]) if yield(self[count])
-      count += 1
-    end
+    my_each { |num| arr.push(num) if yield(num) }
     arr
   end
   
   # my_all
   def my_all?
-    count = 0
-    while count < length
-      count += 1
-      return false unless yield(self[count])
-      
-    end
+    my_each { |num| return false unless yield(num)}
     true
   end
   
   # my_any?
   def my_any?
-    count = 0
-    while count < length
-      count += 1
-      return true if yield(self[count])
-    end
+    my_each { |num| return true if yield(num)}
     false
   end
   
   # my_none?
   def my_none?
-    count = 0
-    while count < length
-      false if yield(self[count])
-      count += 1
-    end
+    my_each { |num| return false if yield(num)}
     true
   end
   
   # my_count
-  def my_count
+  def my_count(arg = nil)
     count = 0
-    index = 0
-    if block_given?
-      while index < length
-        count += 1 if yield(self[index])
-        index += 1
+    if arg.nil? 
+      if block_given?
+        my_each { |num| count += 1 if yield(num) }
+      else
+        my_each { count += 1 }
       end
     else
-      while index < length
-        count += 1
-        index += 1
-      end
+      my_each { |num| count += 1 if arg == num }
     end
     count
   end
-  
+    
   # my_map
   def my_map(proc = nil)
     count = 0
