@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 module Enumerable
-  
+
   # my each
   def my_each
     count = 0
@@ -9,7 +10,7 @@ module Enumerable
     end
     self
   end
-  
+
   # my_each_with_each
   def my_each_with_index
     count = 0
@@ -19,36 +20,36 @@ module Enumerable
     end
     self
   end
-  
+
   # my_select
   def my_select
     arr = []
     my_each { |num| arr.push(num) if yield(num) }
     arr
   end
-  
+
   # my_all
   def my_all?
-    my_each { |num| return false unless yield(num)}
+    my_each { |num| return false unless yield(num) }
     true
   end
-  
+
   # my_any?
   def my_any?
-    my_each { |num| return true if yield(num)}
+    my_each { |num| return true if yield(num) }
     false
   end
-  
+
   # my_none?
   def my_none?
-    my_each { |num| return false if yield(num)}
+    my_each { |num| return false if yield(num) }
     true
   end
-  
+
   # my_count
   def my_count(arg = nil)
     count = 0
-    if arg.nil? 
+    if arg.nil?
       if block_given?
         my_each { |num| count += 1 if yield(num) }
       else
@@ -59,7 +60,7 @@ module Enumerable
     end
     count
   end
-    
+
   # my_map
   def my_map(proc = nil)
     count = 0
@@ -74,7 +75,7 @@ module Enumerable
     end
     map_arr
   end
-  
+
   # my_inject
   def my_inject(initial = nil)
     count = 0
@@ -89,7 +90,6 @@ module Enumerable
     end
     initial
   end
-    
 end
 
 # multiply_els method -> multiply_els([2,4,5]) #=> 40
