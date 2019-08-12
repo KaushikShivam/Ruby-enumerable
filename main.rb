@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-module Enumerable
 
+# This modudle impliments custom enumerable methods
+module Enumerable
   # my each
   def my_each
     count = 0
